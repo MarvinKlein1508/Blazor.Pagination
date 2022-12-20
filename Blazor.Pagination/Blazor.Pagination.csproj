@@ -4,6 +4,11 @@
     <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Description>A simple pagination component for blazor apps.</Description>
+    <RepositoryUrl>https://github.com/MarvinKlein1508/Blazor.Pagination</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>pagination</PackageTags>
   </PropertyGroup>
 
 
