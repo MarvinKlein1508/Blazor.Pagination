@@ -15,13 +15,24 @@ Start by add the following using statement to your root `_Imports.razor`.
 
     @using Blazor.Pagination
 
-To use the component, your page should define a public parameter for the current page. For example:
+To use the component, your page should define a public parameter for the current page and for the `TotalItems`. For example:
 
 ```csharp
     private int _page = 1;
     [Parameter]
     public int Page { get => _page; set => _page value < 1 ? 1 : value; }
+    
+    public int TotalItems { get; set; }
+    
+    public async Task LoadAsync(bool navigateToFirstPage = false) 
+    {
+        // Provide Page to your class or method
+        TotalItems = 100// YOUR_METHOD_TO_FETCH_TOTAL_ITEMS;
+        // Do your Loading here.
+    }
 ```
+Within your function that loads the data you can forward the Page property to any class of method. Your method should also call another method to set `TotalItems`
+
 
 Your site should be accessible with two routes. For example:
 ```csharp
