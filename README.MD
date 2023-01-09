@@ -27,7 +27,7 @@ To use the component, your page should define a public parameter for the current
     public async Task LoadAsync(bool navigateToFirstPage = false) 
     {
         // Provide Page to your class or method
-        TotalItems = 100// YOUR_METHOD_TO_FETCH_TOTAL_ITEMS;
+        TotalItems = 100;// YOUR_METHOD_TO_FETCH_TOTAL_ITEMS;
         // Do your Loading here.
     }
 ```
@@ -50,12 +50,44 @@ The component expects you to provide three parameters.
 | NavUrl | string | The base for the generated nav-links.
 
 You can embed the component in your `.razor` files like this:
-
+```csharp
     <Pagination Page="Page"
                 TotalItems="TotalItems"
                 NavUrl="/Customer/Page/" />
+```
 
 
 
 To unify the use of the component, the component also provides the `IHasPagination` interface. This contains all needed properties as well as a function to Load the data.
 
+## EventPagination
+This nuget package also offers another pagination component based on events. This one should be used when you don't want to provide the current page via URL.
+
+The usage for this component is identical with the regular pagination component. The difference is that instead of providing a `NavUrl` as parameter, you'll need to provide an `EventCallback<int>`.
+```csharp
+    <EventPagination Page="Page"
+                TotalItems="TotalItems"
+                PageChanged="OnPageChangedAsync" />
+    
+    @code {
+        private async Task OnPageChangedAsync(int pageNumber)
+        {
+            Page = pageNumber;
+            await LoadAsync();
+        }
+
+        public async Task LoadAsync(bool navigateToFirstPage = false) 
+        {
+            // Provide Page to your class or method
+            TotalItems = 100;// YOUR_METHOD_TO_FETCH_TOTAL_ITEMS;
+            // Do your Loading here.
+        } 
+    }
+```
+
+The component expects you to provide three parameters. 
+| Parameter | Type | Function
+|---|---|---|
+|  Page | int  | The currently active page
+| TotalItems | int | The total amount of available items
+| PageChanged | EventCallback<int> | A callback function which does something based on the selected page number
