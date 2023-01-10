@@ -16,9 +16,10 @@
             {
                 @for (int i = StartPage; i <= MaxPage; i++)
                 {
+                    int pageNumber = i;
                     string subClass = CurrentPageNumber == i ? "active" : string.Empty;
 
-                    <li class="page-item @subClass"><button type="button" class="page-link" @onclick="async () => await OnPageChangedAsync(i)">@i</button></li>
+                    <li class="page-item @subClass"><button type="button" class="page-link" @onclick="async () => await OnPageChangedAsync(pageNumber)">@i</button></li>
                 }
             }
 
