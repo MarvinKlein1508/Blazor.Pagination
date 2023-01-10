@@ -6,9 +6,6 @@ namespace Blazor.Pagination
     {
         [Parameter]
         [EditorRequired]
-        public string NavUrl { get; set; } = String.Empty;
-        [Parameter]
-        [EditorRequired]
         public int CurrentPageNumber { get; set; } = 1;
         [Parameter]
         [EditorRequired]
